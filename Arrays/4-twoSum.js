@@ -1,8 +1,14 @@
 
-const nums = [2, 7, 11, 15];
-const target = 13;
+// Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target.
 
-// brute force way;
+// Input:
+const nums = [2, 7, 11, 15];
+const target = 9;
+
+// Output: [0,1]
+
+
+// brute force way
 function twoSum(nums, target) {
     if (!nums.length || !target) return;
 
