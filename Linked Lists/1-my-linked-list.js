@@ -52,10 +52,26 @@ class MyLinkedList {
             }
         }
 
+        this.length++;
+    }
+
+    treverse(index) {
+        let currentNode = this.head;
+        let count = 0;
+
+        while (count !== index) {
+            currentNode = currentNode.next;
+            count++;
+        }
+
+        return currentNode;
     }
 
     delete(index) {
-        //todo
+        const leader = this.treverse(index - 1);
+        const pointer = leader.next;
+        leader.next = pointer.next;
+        this.length++;
     }
 
     print() {
@@ -79,5 +95,6 @@ const myLinkedList = new MyLinkedList(10);
 myLinkedList.append(5);
 myLinkedList.append(18);
 myLinkedList.append(6);
+myLinkedList.append(7);
 myLinkedList.delete(2);
 console.log(myLinkedList.print());
