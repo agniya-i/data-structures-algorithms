@@ -48,28 +48,10 @@ class BinarySearchTree {
         return this;
     }
 
-    traverseBFS() {
-        let currentNode = this.root;
-        const list = [];
-        const queue = [];
-
-        queue.push(currentNode); // add to queue our first number
-
-        while (queue.length > 0) {
-            currentNode = queue.shift();  // set current node to 1 element from queue
-            list.push(currentNode.value);
-
-            if (currentNode.left) {
-                queue.push(currentNode.left);
-            }
-
-            if (currentNode.right) {
-                queue.push(currentNode.right);
-            }
-        }
-
-        return list;
+    injectSearchMethod(fn) {
+        this[fn.name] = fn.bind(this);
     }
+
 
     traverseRecursiveBFS(queue, list) {
         console.log(queue);
@@ -86,8 +68,34 @@ class BinarySearchTree {
 }
 
 
+// const bfsDriver = function () { };
+
+
+function traverseBFS() {
+    let currentNode = this.root;
+    const list = [];
+    const queue = [];
+
+    queue.push(currentNode); // add to queue our first number
+
+    while (queue.length > 0) {
+        currentNode = queue.shift();  // set current node to 1 element from queue
+        list.push(currentNode.value);
+
+        if (currentNode.left) {
+            queue.push(currentNode.left);
+        }
+
+        if (currentNode.right) {
+            queue.push(currentNode.right);
+        }
+    }
+
+    return list;
+}
 
 const myBinarySearchTree = new BinarySearchTree();
+myBinarySearchTree.injectSearchMethod(traverseBFS);
 myBinarySearchTree.insert(9);
 myBinarySearchTree.insert(4);
 myBinarySearchTree.insert(6);
@@ -96,6 +104,6 @@ myBinarySearchTree.insert(170);
 myBinarySearchTree.insert(15);
 myBinarySearchTree.insert(1);
 
-// console.log(myBinarySearchTree.traverseBFS());
+console.log(myBinarySearchTree.traverseBFS(null, 'preorder'));
 
-console.log(myBinarySearchTree.traverseRecursiveBFS([myBinarySearchTree.root], []));
+//console.log(myBinarySearchTree.traverseRecursiveBFS([myBinarySearchTree.root], []));
