@@ -70,6 +70,19 @@ class BinarySearchTree {
 
         return list;
     }
+
+    traverseRecursiveBFS(queue, list) {
+        console.log(queue);
+        if (!queue.length) return list;
+
+        let currentNode = queue.shift();
+        list.push(currentNode.value);
+
+        if (currentNode.left) queue.push(currentNode.left);
+        if (currentNode.right) queue.push(currentNode.right);
+
+        return this.traverseRecursiveBFS(queue, list);
+    }
 }
 
 
@@ -83,5 +96,6 @@ myBinarySearchTree.insert(170);
 myBinarySearchTree.insert(15);
 myBinarySearchTree.insert(1);
 
-console.log(myBinarySearchTree.traverseBFS());
+// console.log(myBinarySearchTree.traverseBFS());
 
+console.log(myBinarySearchTree.traverseRecursiveBFS([myBinarySearchTree.root], []));
