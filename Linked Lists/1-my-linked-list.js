@@ -67,6 +67,16 @@ class MyLinkedList {
         return currentNode;
     }
 
+    reversePrint(llist) {
+        // Write your code here
+        if (llist === null) { return }
+
+        reversePrint(llist.next);
+
+        console.log(llist.data);
+
+    }
+
     delete(index) {
         const leader = this.treverse(index - 1);
         const pointer = leader.next;
